@@ -19,7 +19,7 @@ export class AppComponent {
     this.todo = "";
   }
 
-  checkCompleted = function(todo){
-
+  clearCompletedEvent(){
+    this.todos = this.todos.filter(a => !a.done);
   }
 }
