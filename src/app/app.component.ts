@@ -1,5 +1,5 @@
-import {Http} from '@angular/http';
-import { Component } from '@angular/core';
+import {Headers, RequestOptions,  Http} from '@angular/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,21 @@ export class AppComponent {
 
    }
 
+   ngOnInit(){
+    let headers = new Headers({
+      "content-Type" : "application/json",
+      "Authorization" : "token 36e9dd50-3012-4300-9af4-4c0ba6b8230b"
+    });
+
+    let options = new RequestOptions({
+      headers : headers
+    });
+
+    this.http.get("/me/todomvc", options).subscribe(res =>  {
+      console.log(res);
+      this.todos = res.json();
+    });
+   }
 
   submitTodo = function(){
     this.todos.push({
@@ -41,5 +56,19 @@ export class AppComponent {
       a.done = status
       return a;
     });
+  }
+
+  save() {
+
+    let headers = new Headers({
+      "content-Type" : "application/json",
+      "Authorization" : "token 36e9dd50-3012-4300-9af4-4c0ba6b8230b"
+    });
+
+    let options = new RequestOptions({
+      headers : headers
+    });
+
+    this.http.post("/me/todomvc", this.todos, options).subscribe();
   }
 }

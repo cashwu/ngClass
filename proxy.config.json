@@ -1,0 +1,8 @@
+{
+    "/me": {
+        "target": { "host": "jsonbin.org", "protocol": "https:", "port": 443 },
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}
