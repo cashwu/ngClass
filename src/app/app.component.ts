@@ -12,7 +12,14 @@ export class AppComponent {
   todo : string = "";
 
   submitTodo = function(){
-    this.todos.push(this.todo);
+    this.todos.push({
+       value: this.todo,
+       done: false
+     });
     this.todo = "";
+  }
+
+  checkCompleted = function(todo){
+
   }
 }
