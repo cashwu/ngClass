@@ -22,4 +22,18 @@ export class AppComponent {
   clearCompletedEvent(){
     this.todos = this.todos.filter(a => !a.done);
   }
+
+  btnDelete(todo){
+    let idx = this.todos.indexOf(todo);
+    this.todos.splice(idx, 1);
+
+    this.todos = [...this.todos];
+  }
+
+  btnSelectAll(status : Boolean) {
+    this.todos.map(a => {
+      a.done = status
+      return a;
+    });
+  }
 }
