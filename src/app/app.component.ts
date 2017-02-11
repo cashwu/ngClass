@@ -1,3 +1,4 @@
+import { DataService } from './data.service';
 import {Headers, RequestOptions,  Http} from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,24 +13,14 @@ export class AppComponent {
   todos : any[] = [];
   todo : string = "";
 
-   constructor(private http: Http){
+   constructor(public dataService: DataService){
 
    }
 
    ngOnInit(){
-    let headers = new Headers({
-      "content-Type" : "application/json",
-      "Authorization" : "token 36e9dd50-3012-4300-9af4-4c0ba6b8230b"
-    });
-
-    let options = new RequestOptions({
-      headers : headers
-    });
-
-    this.http.get("/me/todomvc", options).subscribe(res =>  {
-      console.log(res);
-      this.todos = res.json();
-    });
+      this.dataService.getTodos().subscribe(value => {
+        this.todos = value;
+      })
    }
 
   submitTodo = function(){
@@ -60,15 +51,6 @@ export class AppComponent {
 
   save() {
 
-    let headers = new Headers({
-      "content-Type" : "application/json",
-      "Authorization" : "token 36e9dd50-3012-4300-9af4-4c0ba6b8230b"
-    });
-
-    let options = new RequestOptions({
-      headers : headers
-    });
-
-    this.http.post("/me/todomvc", this.todos, options).subscribe();
+    
   }
 }
