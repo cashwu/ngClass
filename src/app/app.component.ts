@@ -1,3 +1,4 @@
+import {Http} from '@angular/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,6 +11,11 @@ export class AppComponent {
 
   todos : any[] = [];
   todo : string = "";
+
+   constructor(private http: Http){
+
+   }
+
 
   submitTodo = function(){
     this.todos.push({
